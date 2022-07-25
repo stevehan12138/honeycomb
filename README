@@ -1,0 +1,15 @@
+# HoneycombLang
+Honeycomb is a interpreted programming language, currently WIP as my personal project. 
+I want to use this as an opportunity to learn Rust and how languages work in general. Advices and suggestions are welcomed!
+The file extension for now is .comb, but may change later.
+The syntax is still a work in progress, there will be more detailed documentation as the language grows. Currently, the goal is to have a similar syntax as Python, with added feature that I like from Typescript, Rust, etc.
+
+## Goals
+The language is written in Rust and interpreted. The goal is to create a Turing complete programming languages with many features like loops, if statements, functions, etc.
+
+## Current Progress
+- [x] basic arithmetic
+- [x] i32 only variable
+- [ ] if statement
+- [ ] string literal
+- [ ] for statement
