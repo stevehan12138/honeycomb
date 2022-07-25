@@ -4,6 +4,8 @@ use std::{
     collections::HashMap
 };
 
+use colored::Colorize;
+
 #[derive(Debug)]
 enum Tokens {
     INT(i32),
@@ -132,7 +134,7 @@ impl Interpreter {
     }
 
     fn get_left_right(&self, tokens: &Vec<Tokens>, i: usize) -> Result<(i32, i32), String> {
-        if i < 2 || i >= tokens.len() - 1 {
+        if i < 1 || i >= tokens.len() - 1 {
             return Err(format!("Missing keywords for op on line {}", self.get_line()));
         }
 
@@ -188,8 +190,11 @@ fn tokenize(line: String) -> Vec<Tokens> {
                 //variable or intlit
                 if token.chars().all(char::is_alphabetic) {
                     tokens.push(Tokens::KEYWORD(KEYWORD::VARNAME(token)));
-                } else {
+                } else if token.chars().all(char::is_numeric) {
                     tokens.push(Tokens::INT(token.parse::<i32>().unwrap()));
+                } else {
+                    println!("Invalid token: {}", token.red());
+                    std::process::exit(1)
                 }
             }
         }
