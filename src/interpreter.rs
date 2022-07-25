@@ -90,7 +90,7 @@ impl Interpreter {
                             Some(vars.0 / vars.1)
                         },
                         Op::EQL => {
-                            if i < 2 {
+                            if i < 2 || i >= tokens.len() - 1 {
                                 return Err(format!("Missing keywords for setting variable on line {}", self.get_line()));
                             }
 
@@ -132,6 +132,10 @@ impl Interpreter {
     }
 
     fn get_left_right(&self, tokens: &Vec<Tokens>, i: usize) -> Result<(i32, i32), String> {
+        if i < 2 || i >= tokens.len() - 1 {
+            return Err(format!("Missing keywords for op on line {}", self.get_line()));
+        }
+
         let left = match &tokens[i - 1] {
             Tokens::INT(i) => i,
             Tokens::KEYWORD(KEYWORD::VARNAME(varname)) => {
